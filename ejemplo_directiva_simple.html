@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Ejemplo creación de directiva simple en angularjs</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
 	<script src="./directiva_custom.js"></script>
 	<style>
@@ -16,14 +17,21 @@
 			height: 75px;/*width y height iguales para ser un cuadrado que con un radio de 50% convierte en circulo*/
 			display: inline-block;
 		}
+		.ui-helper-hidden-accessible{
+			display: none;
+		}
 	</style>
 </head>
 <body ng-controller="Controlador">
+	<input type="text" directiva-autocompletado="titles" placeholder="buscar en titulos...">
+	<div ng-if="seleccionado"><em>Título seleccionado: {{seleccionado}}</em></div>
 	<ul class="undecorated">
 		<li ng-repeat="post in posts" ng-if="post['photo-url-75']">
 			<div class="circular" directiva-img="{{post['photo-url-75']}}"></div>
 		</li>
 	</ul>
+	<h6>Ejemplo basado en un curso de codigofacilito.com</h6>
+	<h6>Las imágenes y títulos pertenecen a http://un-escritor-dice.tumblr.com </h6>
 	<!-- Esta basado en un curso de codigofacilito (codigofacilito.com/videos/curso_angularjs_directivas_personalizadas_parte) -->
 </body>
 </html>
