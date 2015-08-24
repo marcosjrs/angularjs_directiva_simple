@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" ng-App="App">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo creación de directiva simple en angularjs</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+	<script src="./directiva_custom.js"></script>
+	<style>
+		.undecorated li{
+			list-style-type: none;
+		}
+		.circular{
+			border-radius: 50%;
+			width: 75px;
+			height: 75px;/*width y height iguales para ser un cuadrado que con un radio de 50% convierte en circulo*/
+			display: inline-block;
+		}
+	</style>
+</head>
+<body ng-controller="Controlador">
+	<ul class="undecorated">
+		<li ng-repeat="post in posts" ng-if="post['photo-url-75']">
+			<div class="circular" directiva-img="{{post['photo-url-75']}}"></div>
+		</li>
+	</ul>
+	<!-- Esta basado en un curso de codigofacilito (codigofacilito.com/videos/curso_angularjs_directivas_personalizadas_parte) -->
+</body>
+</html>
