@@ -36,20 +36,22 @@ angular
 	};
 })
 .controller('Controlador',function($scope,$http){
-	$scope.titles=[];
-	var url = "http://un-escritor-dice.tumblr.com/api/read/json?callback=JSON_CALLBACK";
-	$http.jsonp(url)
+	$scope.nombresPosts=[];
+	var url = "https://api.github.com/users/marcosjrs/repos";
+
+
+	$http.get(url)
     .success(function(data) {
-    	$scope.posts=data.posts;
-    	for (var i = data.posts.length - 1; i >= 0; i--) {
-    		if(data.posts[i]["regular-title"]) $scope.titles.push(data.posts[i]["regular-title"]);
+    	$scope.posts=data;
+    	for (var i = data.length - 1; i >= 0; i--) {
+    		$scope.nombresPosts.push(data[i].name);
     	};
 	}).error(function(err){
 	});
 
 	$scope.seleccionar = function(item){		
 		$scope.$apply(function(){
-			$scope.seleccionado = item; // sin realizar el apply, no se percataría angularjs.
+			$scope.post_seleccionado = item;// sin realizar el apply, no se percataría angularjs.
 		});
 	}
 });

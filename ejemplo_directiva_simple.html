@@ -8,30 +8,52 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
 	<script src="./directiva_custom.js"></script>
 	<style>
-		.undecorated li{
-			list-style-type: none;
+		body,html{
+			background-color: #eee;
+			margin: 0px;
 		}
+		ul.ui-autocomplete{			
+			max-width: 218px;
+			background-color: white;
+			padding-left: 0px;
+		}
+		ul.ui-autocomplete li{
+			list-style-type: none;
+			
+		}
+		input.buscador{
+			width: 215px;
+		}
+		.container-buscador{
+			margin-left: 10px;
+			margin-top: 10px;
+		}
+		.text-centered-undecored{
+			text-align: center;
+			list-style-type: none;
+		}		
 		.circular{
 			border-radius: 50%;
 			width: 75px;
 			height: 75px;/*width y height iguales para ser un cuadrado que con un radio de 50% convierte en circulo*/
 			display: inline-block;
 		}
-		.ui-helper-hidden-accessible{
-			display: none;
-		}
+		
 	</style>
 </head>
 <body ng-controller="Controlador">
-	<input type="text" directiva-autocompletado="titles" placeholder="buscar en titulos...">
-	<div ng-if="seleccionado"><em>Título seleccionado: {{seleccionado}}</em></div>
-	<ul class="undecorated">
-		<li ng-repeat="post in posts" ng-if="post['photo-url-75']">
-			<div class="circular" directiva-img="{{post['photo-url-75']}}"></div>
+	<div class="container-buscador">
+		<input class="buscador" type="text" directiva-autocompletado="nombresPosts" placeholder="buscar..."> 
+		<a ng-click="post_seleccionado=false">Clear</a>
+	</div>
+
+	<ul class="text-centered-undecored">
+		<li ng-repeat="post in posts"  ng-hide="post_seleccionado && post_seleccionado != post.name">
+			<div class="circular" directiva-img="{{post.owner.avatar_url}}"></div>
+			<h1 >{{post.full_name}}</h1>
 		</li>
 	</ul>
-	<h6>Ejemplo basado en un curso de codigofacilito.com</h6>
-	<h6>Las imágenes y títulos pertenecen a http://un-escritor-dice.tumblr.com </h6>
+	
 	<!-- Esta basado en un curso de codigofacilito (codigofacilito.com/videos/curso_angularjs_directivas_personalizadas_parte) -->
 </body>
 </html>
